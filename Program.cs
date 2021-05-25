@@ -28,7 +28,15 @@ void Main()
     //phase 2
         if (parsedInput != theNumber && i < 4)
         {
-            Console.Write($"Nope! guess {userGuess} of 4 > ");
+            Console.WriteLine($"Nope! ({userGuess} of 4)  ");
+            if (parsedInput < theNumber)
+            {
+                Console.Write("guess higher > ");
+            }
+            else
+            {
+                Console.Write("guess lower > ");
+            }
             userGuess++;
         }
         else if (i == 4)
