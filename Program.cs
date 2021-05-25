@@ -9,7 +9,7 @@ static void Main()
     bool difficultyCheck = true;
     while (difficultyCheck)
     {
-    Console.WriteLine("please select difficulty level. Easy, Medium, or Hard.");
+    Console.WriteLine("please select difficulty level. Easy, Medium, Hard, or Cheater.");
     string difficulty = Console.ReadLine();
 
         if (difficulty.ToLower() == "easy")
@@ -25,6 +25,11 @@ static void Main()
         else if (difficulty.ToLower() == "hard")
         {
             guessNumber = 4;
+            difficultyCheck = false;
+        }
+        else if (difficulty.ToLower() == "cheater")
+        {
+            guessNumber = 1000;
             difficultyCheck = false;
         }
         else
