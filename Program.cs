@@ -1,14 +1,42 @@
 ﻿using System;
 
-Main();
-void Main()
+class Program {
+static void Main()
 {
-//phase 1
 
+    //phase 7
+    int guessNumber = 0;
+    bool difficultyCheck = true;
+    while (difficultyCheck)
+    {
+    Console.WriteLine("please select difficulty level. Easy, Medium, or Hard.");
+    string difficulty = Console.ReadLine();
+
+        if (difficulty.ToLower() == "easy")
+        {
+            guessNumber = 8;
+            difficultyCheck = false;
+        }
+        else if (difficulty.ToLower() == "medium")
+        {
+            guessNumber = 6;
+            difficultyCheck = false;
+        }
+        else if (difficulty.ToLower() == "hard")
+        {
+            guessNumber = 4;
+            difficultyCheck = false;
+        }
+        else
+        {
+            Console.WriteLine("please select a valid option.");
+            difficultyCheck = false;
+        }
+    }
+    //phase 1
     Console.WriteLine("Guess the secret number");
     // Console.Write("your guess = ");
     // Console.WriteLine(input);
-
 
     //phase 3
     // int theNumber = 42;
@@ -19,16 +47,34 @@ void Main()
     //phase5
     int theNumber = new Random().Next(0, 100);
 
-    Console.Write($"guess {userGuess} of 4 > ");
-    userGuess++;
-    for (int i = 1; i < 5; i++)
+    Console.Write($"guess {userGuess} of {guessNumber} > ");
+
+
+    for (int i = 1; i <= guessNumber; i++)
     {
     string input = Console.ReadLine();
-    int parsedInput = int.Parse(input);
+    int parsedInput;
+    try
+    {
+    parsedInput = int.Parse(input);
+    }
+    catch 
+    {
+        Console.WriteLine("invalid response");
+        Console.WriteLine($"Nope! ({i} of {guessNumber})");
+        i--;
+        continue;
+    };
     //phase 2
-        if (parsedInput != theNumber && i < 4)
+       if (theNumber == parsedInput) 
         {
-            Console.WriteLine($"Nope! ({userGuess} of 4)  ");
+            Console.Write("You're amazing! the number was ");
+            Console.WriteLine(theNumber);
+            break;
+        }
+        if (parsedInput != theNumber && i < guessNumber)
+        {
+            Console.WriteLine($"Nope! ({i+1} of {guessNumber})");
             if (parsedInput < theNumber)
             {
                 Console.Write("guess higher > ");
@@ -37,19 +83,15 @@ void Main()
             {
                 Console.Write("guess lower > ");
             }
-            userGuess++;
+            
         }
-        else if (i == 4)
+        else if (i == guessNumber)
         {
             Console.Write("out of attempts! the number was ");
             Console.WriteLine(theNumber);
 
         }
-        else 
-        {
-            Console.Write("You're amazing! the number was ");
-            Console.WriteLine(theNumber);
-            break;
-        }
+
     };
-};
+}
+}
